@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/image0.png" alt="Rendu SketchUp Persienne à la Française" width="500">
+</p>
+
 # Louver Blade Generator
 
 Un petit utilitaire pour SketchUp permettant de générer rapidement des lames de persiennes à partir de paramètres simples.
