@@ -1,5 +1,5 @@
 module LouverBlade
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
  
   CONFIG = {
     blade: { color: [200, 200, 200], name: "Louver_Material" },
