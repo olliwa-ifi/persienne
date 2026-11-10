@@ -62,7 +62,7 @@ module LouverBlade
         [0, @calc.sloped_depth * @calc.cos_a, @calc.sloped_depth * @calc.sin_a]
       ].map { |p| Geom::Point3d.new(*p) }
       
-      finalize_component(def_obj, pts, -@params.blade_length, CONFIG[:blade])
+      finalize_component(def_obj, pts, -@params.blade_length, :blade)
       def_obj
     end
 
@@ -78,23 +78,23 @@ module LouverBlade
         [0, 0, top_z]
       ].map { |p| Geom::Point3d.new(*p) }
       
-      finalize_component(def_obj, pts, @params.blade_length, CONFIG[:rail])
+      finalize_component(def_obj, pts, @params.blade_length, :rail)
       def_obj
     end
 
-    def finalize_component(definition, points, dist, cfg)
+    def finalize_component(definition, points, dist, config_key)
       face = definition.entities.add_face(points)
-      mat = get_or_create_material(cfg[:name], cfg[:color])
-      face.material = mat
+      
+      # Utilisation du helper centralisé du module LouverBlade
+      mat = LouverBlade.get_or_create_material(config_key)
+      
       face.pushpull(dist)
-      definition.entities.each { |e| e.material = mat if e.is_a?(Sketchup::Face) }
+      
+      # Application du matériau à toutes les faces du composant final
+      definition.entities.grep(Sketchup::Face).each { |f| f.material = mat }
     end
-
-    def get_or_create_material(name, color)
-      mats = @model.materials
-      mat = mats[name] || mats.add(name)
-      mat.color = Sketchup::Color.new(*color)
-      mat
-    end
+    
+    # La méthode locale get_or_create_material a été supprimée car 
+    # on utilise maintenant LouverBlade.get_or_create_material
   end
 end

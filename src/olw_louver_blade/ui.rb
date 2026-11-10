@@ -15,13 +15,23 @@ module LouverBlade
       integrate_blades:   { prompt: "[OPTION]    Intégrer extrémités:", default_key: :integrate_blades,   list: "Oui|Non", type: :bool }
     }.freeze
 
-    # 2. RÈGLES DE VALIDATION
+    # 2. RÈGLES DE VALIDATION (Mise à jour pour couvrir TOUS les paramètres)
     VALIDATION_RULES = {
-      blade_length:    { min: 1, max: 1000 },
-      blade_thickness: { min: 0.1, max: 100 },
-      blade_angle:     { min: 0, max: 89 },
-      max_height:      { min: 10, max: 10000 },
-      overlap:         { min: 0, max: 10 }
+      # Origines (permettant des valeurs négatives pour le positionnement)
+      origin_x:           { min: -10000, max: 10000 },
+      origin_y:           { min: -10000, max: 10000 },
+      origin_z:           { min: -10000, max: 10000 },
+      
+      # Dimensions principales
+      max_height:         { min: 10, max: 10000 },
+      blade_length:       { min: 1, max: 1000 },
+      blade_thickness:    { min: 0.1, max: 100 },
+      blade_angle:        { min: 0, max: 89 },
+      overlap:            { min: 0, max: 10 },
+      
+      # Traverses
+      stile_depth:        { min: 0.5, max: 50 },
+      rail_height:        { min: 0.5, max: 100 }
     }.freeze
 
     DEFAULT_VALUES = {
@@ -39,7 +49,7 @@ module LouverBlade
         lists    = SCHEMA.values.map { |v| v[:list] }
         
         defaults = SCHEMA.keys.map do |key|
-          val = (LouverBlade::Config.get(key) rescue DEFAULT_VALUES[key])
+          val = LouverBlade.get(key, DEFAULT_VALUES[key])
           if SCHEMA[key][:list]
             (val == true || val.to_s.downcase == "true") ? "Oui" : "Non"
           else
@@ -79,7 +89,6 @@ module LouverBlade
         case config[:type]
         when :float
           num = value.to_f
-          raise ArgumentError, "Les dimensions doivent être positives" if num <= 0
           check_range(num, key, label)
           validated[key] = num
         when :integer
@@ -107,7 +116,7 @@ module LouverBlade
     def self.apply_configuration(params)
       LouverLogger.debug("Enregistrement de la configuration utilisateur")
       params.each do |key, value|
-        LouverBlade::Config.set(key, value) rescue nil
+        LouverBlade.set(key, value)
       end
     end
 
