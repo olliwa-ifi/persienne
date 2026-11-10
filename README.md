@@ -5,7 +5,7 @@
 
 Plugin écrit en Ruby pour SketchUp qui génère automatiquement une persienne à la française, incluant les traverses hautes et basses.
 
-![Version](https://img.shields.io/badge/version-1.0.6-blue)
+![Version](https://img.shields.io/badge/version-1.0.7-blue)
 ![Platform](https://img.shields.io/badge/platform-SketchUp-orange)
 ![Language](https://img.shields.io/badge/language-Ruby-red)
 
@@ -20,6 +20,7 @@ Ce plugin automatise la création de séries de lames de persiennes. Plutôt que
 <p align="center">
   <img src="assets/images/ui.png" alt="Rendu SketchUp Persienne à la Française" width="500">
 </p>
+
 - **Génération Paramétrique** : Contrôle sur la largeur, l'épaisseur, l'angle et le recouvrement des lames.
 - **Calcul Dynamique** : Calcul automatique du nombre de lames et de l'espacement vertical basé sur la hauteur totale.
 - **Options Structurelles** : Gestion des traverses (hautes et basses) avec option d'intégration des lames aux extrémités.
@@ -27,6 +28,12 @@ Ce plugin automatise la création de séries de lames de persiennes. Plutôt que
 - **Conversion d'Unités** : Gestion transparente des conversions entre centimètres (Saisie UI) et pouces (API SketchUp).
 - **Journalisation (Logging)** : Système de logs détaillé (`LouverLogger`) pour suivre le processus de génération et faciliter le débogage.
 - **Persistance de Session** : Mémorisation des derniers paramètres utilisés pour un flux de travail accéléré.
+
+
+<p align="center">
+  <img src="assets/images/composants.png" alt="Composants" width="500">
+</p>
+
 
 ## 🏗 Architecture Technique
 
