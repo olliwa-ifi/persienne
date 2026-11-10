@@ -17,7 +17,9 @@ Un petit utilitaire pour SketchUp permettant de générer rapidement des lames d
 Ce plugin automatise la création de séries de lames de persiennes. Plutôt que de dessiner et dupliquer manuellement chaque élément, l'utilisateur définit les dimensions, l'angle et la hauteur totale. Le plugin calcule alors dynamiquement le nombre de lames optimal et gère leur placement ainsi que celui des traverses structurelles.
 
 ## 🚀 Fonctionnalités
-
+<p align="center">
+  <img src="assets/images/ui.png" alt="Rendu SketchUp Persienne à la Française" width="500">
+</p>
 - **Génération Paramétrique** : Contrôle sur la largeur, l'épaisseur, l'angle et le recouvrement des lames.
 - **Calcul Dynamique** : Calcul automatique du nombre de lames et de l'espacement vertical basé sur la hauteur totale.
 - **Options Structurelles** : Gestion des traverses (hautes et basses) avec option d'intégration des lames aux extrémités.
