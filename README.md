@@ -5,7 +5,7 @@
 
 Plugin écrit en Ruby pour SketchUp qui génère automatiquement une persienne à la française, incluant les traverses hautes et basses.
 
-![Version](https://img.shields.io/badge/version-1.0.5-blue)
+![Version](https://img.shields.io/badge/version-1.0.6-blue)
 ![Platform](https://img.shields.io/badge/platform-SketchUp-orange)
 ![Language](https://img.shields.io/badge/language-Ruby-red)
 

@@ -1,5 +1,5 @@
 module LouverBlade
-  VERSION = "1.0.5"
+  VERSION = "1.0.6"
  
   # Initialisation de la persistance simple
   @@params = {}
