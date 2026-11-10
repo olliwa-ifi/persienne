@@ -1,9 +1,9 @@
 module LouverBlade
-  VERSION = "1.0.2"
+  VERSION = "1.0.3"
  
   CONFIG = {
-    blade: { color: [200, 200, 200], name: "Louver_Material" },
-    rail:  { color: [80, 80, 80],   name: "Louver_Rail_Mat" }
+    blade: { color: [225, 190, 150], name: "Louver_Material" },
+    rail:  { color: [890, 50, 30],   name: "Louver_Rail_Mat" }
   }.freeze
 
   # Helpers de conversion pour un code plus clair

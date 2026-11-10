@@ -9,15 +9,19 @@ module LouverBlade
     end
 
     def build
+      LouverLogger.info("Démarrage de la génération géométrique (Run ID: #{@run_id})")
       @model.start_operation("Louver Generator v#{LouverBlade::VERSION}", true)
+      
       begin
         group = @model.active_entities.add_group
         group.name = "Louver_Assembly_#{@run_id}"
 
+        LouverLogger.debug("Création des définitions de composants...")
         blade_def = create_blade_def
         rail_bottom_def = create_rail_def("Bottom")
         rail_top_def = create_rail_def("Top", @calc.rail_bevel)
 
+        LouverLogger.debug("Placement des rails structurels...")
         [rail_bottom_def, rail_top_def].each_with_index do |def_obj, i|
           pos = Geom::Point3d.new(
             @params.origin.x, 
@@ -28,6 +32,7 @@ module LouverBlade
           group.entities.add_instance(def_obj, Geom::Transformation.new(pos) * rot)
         end
 
+        LouverLogger.debug("Placement des #{@calc.num_blades} lames...")
         range = @params.integrated_blades ? (1...@calc.num_blades - 1) : (0...@calc.num_blades)
         start_z = @params.stile_height - @calc.blade_bevel
         
@@ -37,9 +42,11 @@ module LouverBlade
         end
 
         @model.commit_operation
+        LouverLogger.info("Génération terminée avec succès.")
         true
       rescue => e
         @model.abort_operation
+        LouverLogger.error("Échec de la génération : #{e.message}")
         raise e
       end
     end

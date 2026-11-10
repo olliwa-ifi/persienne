@@ -2,33 +2,41 @@
   <img src="assets/images/image0.png" alt="Rendu SketchUp Persienne à la Française" width="500">
 </p>
 
-# Louver Blade Generator
+Plugin écrit en Ruby pour SketchUp qui génère automatiquement une persienne à la française, incluant les traverses hautes et basses.
+
+![Version](https://img.shields.io/badge/version-1.0.3-blue)
+![Platform](https://img.shields.io/badge/platform-SketchUp-orange)
+![Language](https://img.shields.io/badge/language-Ruby-red)
+
 
 Un petit utilitaire pour SketchUp permettant de générer rapidement des lames de persiennes à partir de paramètres simples.
 
 ## 📝 Description
 
-Ce plugin permet de créer des séries de lames de persiennes sans avoir à les dessiner manuellement. L'utilisateur définit les dimensions et l'angle, et le plugin s'occupe de la répétition et du placement.
+Ce plugin automatise la création de séries de lames de persiennes. Plutôt que de dessiner et dupliquer manuellement chaque élément, l'utilisateur définit les dimensions, l'angle et la hauteur totale. Le plugin calcule alors dynamiquement le nombre de lames optimal et gère leur placement ainsi que celui des traverses structurelles.
 
 ## 🚀 Fonctionnalités
 
-- **Génération Paramétrique** : Contrôle total sur la largeur, l'épaisseur, l'espacement et l'angle des lames.
-- **Conversion d'Unités Intégrée** : Gestion transparente des conversions entre centimètres et pouces.
-- **Persistance de Session** : Mémorisation des derniers paramètres utilisés durant la session de travail pour un flux de création accéléré.
-- **Optimisation Géométrique** : Création de groupes propres pour faciliter l'édition manuelle après génération.
+- **Génération Paramétrique** : Contrôle sur la largeur, l'épaisseur, l'angle et le recouvrement des lames.
+- **Calcul Dynamique** : Calcul automatique du nombre de lames et de l'espacement vertical basé sur la hauteur totale.
+- **Options Structurelles** : Gestion des traverses (hautes et basses) avec option d'intégration des lames aux extrémités.
+- **Validation Intégrée** : Système de vérification des saisies pour empêcher les valeurs aberrantes ou négatives avant la génération.
+- **Conversion d'Unités** : Gestion transparente des conversions entre centimètres (Saisie UI) et pouces (API SketchUp).
+- **Journalisation (Logging)** : Système de logs détaillé (`LouverLogger`) pour suivre le processus de génération et faciliter le débogage.
+- **Persistance de Session** : Mémorisation des derniers paramètres utilisés pour un flux de travail accéléré.
 
 ## 🏗 Architecture Technique
 
-Le plugin suit une architecture qui permet de séparer la logique métier de l'interface utilisateur :
+Le plugin suit une architecture modulaire rigoureuse pour séparer la logique métier de l'interface utilisateur :
 
-- **Root Loader** : Un fichier d'entrée unique assurant le chargement sécurisé des modules.
-- **Namespacing Total** : Tout le code est encapsulé dans le namespace `LouverBlade` pour éviter tout conflit avec d'autres extensions SketchUp.
+- **Root Loader** : Point d'entrée unique assurant le chargement ordonné des modules.
+- **Namespacing Total** : Encapsulation complète dans le namespace `LouverBlade` pour éviter tout conflit avec d'autres extensions.
 - **Modularité** :
-    - `Constants` : Gestion centralisée des versions et valeurs par défaut.
-    - `Logic` : Moteur de calcul mathématique indépendant de l'API SketchUp.
-    - `Builder` : Interface de création d'entités 3D.
-    - `UIHandler` : Gestion des dialogues et stockage session via variables de classe (`@@`).
-    - `Main` : Orchestrateur du flux de données.
+    - `Constants` : Gestion centralisée des versions et configurations par défaut.
+    - `Logic (Louver)` : Moteur de calcul mathématique et trigonométrique indépendant de la géométrie.
+    - `Builder (GeometryBuilder)` : Responsable de la création des entités 3D et des composants SketchUp.
+    - `UIHandler` : Gestion des dialogues, validation des données et stockage session.
+    - `LouverLogger` : Gestionnaire de logs centralisé (Console, Status Bar et Messagebox).
 
 ## 📦 Installation
 
@@ -36,22 +44,6 @@ Le plugin suit une architecture qui permet de séparer la logique métier de l'i
 1. Téléchargez le fichier `.rbz` dans le dossier `release`.
 2. Dans SketchUp, allez dans **Window** $\rightarrow$ **Extension Manager**.
 3. Cliquez sur **Install Extension** et sélectionnez le fichier téléchargé.
-
-### Pour les développeurs (Source)
-1. Clonez le dépôt : `git clone https://github.com/votre-username/louver-blade-generator.git`
-2. Copiez le dossier `src/louver_blade_generator` dans le dossier `Plugins` de SketchUp :
-   - **Windows**: `%AppData%\SketchUp\SketchUp 2020\SketchUp\Plugins`
-   - **macOS**: `~/Library/Application Support/SketchUp 2020/SketchUp/Plugins`
-
-## 🛠 Développement et Build
-
-Le projet utilise un script de build automatisé pour Git Bash qui extrait dynamiquement le numéro de  version depuis le code source.
-
-**Pour générer le package d'installation :**
-```bash
-sh build_plugin.sh
-```
-Le fichier résultat sera déposé dans le dossier `/release` sous le format `louver_blade_generator_v{VERSION}.rbz`.
 
 ## 📋 Prérequis
 - **SketchUp 2020** ou version ultérieure.
