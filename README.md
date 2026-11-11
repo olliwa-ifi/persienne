@@ -1,20 +1,28 @@
+![Version](https://img.shields.io/badge/version-1.0.8-blue)
+![Platform](https://img.shields.io/badge/platform-SketchUp-orange)
+![Language](https://img.shields.io/badge/language-Ruby-red)
+
+## Aperçu du résultat
+Voici un exemple de volume généré avec les paramètres par défaut):
+
 <p align="center">
   <img src="assets/images/readme.png" alt="Rendu SketchUp Persienne à la Française" width="500">
 </p>
 
+# 🪵 Générateur de Persienne à la française pour SketchUp 
 
 Plugin écrit en Ruby pour SketchUp qui génère automatiquement une persienne à la française, incluant les traverses hautes et basses.
 
-![Version](https://img.shields.io/badge/version-1.0.7-blue)
-![Platform](https://img.shields.io/badge/platform-SketchUp-orange)
-![Language](https://img.shields.io/badge/language-Ruby-red)
-
-
-Un petit utilitaire pour SketchUp permettant de générer rapidement des lames de persiennes à partir de paramètres simples.
-
-## 📝 Description
-
 Ce plugin automatise la création de séries de lames de persiennes. Plutôt que de dessiner et dupliquer manuellement chaque élément, l'utilisateur définit les dimensions, l'angle et la hauteur totale. Le plugin calcule alors dynamiquement le nombre de lames optimal et gère leur placement ainsi que celui des traverses structurelles.
+
+## 📦 Installation
+
+### Méthode Automatique  (Fichier .rbz)
+1. Aller dans la section **Releases** de ce dépôt.
+2. Télécharger le fichier `.rbz` le plus récent.
+3. Dans SketchUp : `Fenêtre` $\rightarrow$ `Gestionnaire d'extensions` $\rightarrow$ `Installer l'extension`.
+4. Sélectionner le fichier `.rbz`.
+
 
 ## 🚀 Fonctionnalités
 <p align="center">
@@ -33,27 +41,6 @@ Ce plugin automatise la création de séries de lames de persiennes. Plutôt que
 <p align="center">
   <img src="assets/images/composants.png" alt="Composants" width="500">
 </p>
-
-
-## 🏗 Architecture Technique
-
-Le plugin suit une architecture modulaire rigoureuse pour séparer la logique métier de l'interface utilisateur :
-
-- **Root Loader** : Point d'entrée unique assurant le chargement ordonné des modules.
-- **Namespacing Total** : Encapsulation complète dans le namespace `LouverBlade` pour éviter tout conflit avec d'autres extensions.
-- **Modularité** :
-    - `Constants` : Gestion centralisée des versions et configurations par défaut.
-    - `Logic (Louver)` : Moteur de calcul mathématique et trigonométrique indépendant de la géométrie.
-    - `Builder (GeometryBuilder)` : Responsable de la création des entités 3D et des composants SketchUp.
-    - `UIHandler` : Gestion des dialogues, validation des données et stockage session.
-    - `LouverLogger` : Gestionnaire de logs centralisé (Console, Status Bar et Messagebox).
-
-## 📦 Installation
-
-### Pour les utilisateurs (Fichier .rbz)
-1. Téléchargez le fichier `.rbz` dans le dossier `release`.
-2. Dans SketchUp, allez dans **Window** $\rightarrow$ **Extension Manager**.
-3. Cliquez sur **Install Extension** et sélectionnez le fichier téléchargé.
 
 ## 📋 Prérequis
 - **SketchUp 2020** ou version ultérieure.

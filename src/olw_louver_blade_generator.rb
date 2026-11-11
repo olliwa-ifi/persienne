@@ -95,3 +95,19 @@ module OlliwaLouverBlade
     end # Fin unless file_loaded?
   end # ferme le 'if' de la version
 end # Fin du module OlliwaLouverBlade
+
+# 1. On récupère la version depuis le module Config (chargé précédemment dans le loader)
+version_label = (LouverBlade::VERSION rescue "0.0.0")
+
+# 2. On l'intègre directement dans le NOM de l'extension
+extension_name = "Olliwa Persienne francaise v#{version_label}"
+
+# 3. On crée l'extension avec le nom versionné
+ext = SketchupExtension.new(extension_name, "olw_louver_blade/ui.rb")
+
+# 4. On ajoute les autres détails
+ext.description = "Générateur de persienne torches pour SketchUp"
+ext.creator = "Olliwa"
+
+# 5. On enregistre
+Sketchup.register_extension(ext)
